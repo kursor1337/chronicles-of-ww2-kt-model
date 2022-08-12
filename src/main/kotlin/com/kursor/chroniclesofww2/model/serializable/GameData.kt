@@ -1,6 +1,5 @@
-package com.kursor.chroniclesofww2.model.data
+package com.kursor.chroniclesofww2.model.serializable
 
-import com.kursor.chroniclesofww2.model.game.DivisionResources
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -16,24 +15,24 @@ data class GameData(
 
     val me = if (invertNations) Player(
         myName,
-        DivisionResources(battleData.nation2divisions, myName),
+        battleData.nation2divisions,
         battleData.nation2,
         isInitiator = meInitiator
     ) else Player(
         myName,
-        DivisionResources(battleData.nation1divisions, myName),
+        battleData.nation1divisions,
         battleData.nation1,
         isInitiator = meInitiator
     )
 
     val enemy = if (invertNations) Player(
         enemyName,
-        DivisionResources(battleData.nation1divisions, enemyName),
+        battleData.nation1divisions,
         battleData.nation1,
         isInitiator = !meInitiator
     ) else Player(
         enemyName,
-        DivisionResources(battleData.nation2divisions, enemyName),
+        battleData.nation2divisions,
         battleData.nation2,
         isInitiator = !meInitiator
     )

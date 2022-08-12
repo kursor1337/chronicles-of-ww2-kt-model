@@ -1,4 +1,4 @@
-package com.kursor.chroniclesofww2.model.data
+package com.kursor.chroniclesofww2.model.serializable
 
 import com.kursor.chroniclesofww2.model.game.Nation
 import com.kursor.chroniclesofww2.model.game.board.Division
