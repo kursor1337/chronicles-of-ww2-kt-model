@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class GameData(
     private val myName: String,
     private val enemyName: String,
-    private val battleData: Battle.Data,
+    private val battle: Battle,
     val boardHeight: Int,
     val boardWidth: Int,
     val invertNations: Boolean = false,
@@ -15,25 +15,25 @@ data class GameData(
 
     val me = if (invertNations) Player(
         myName,
-        battleData.nation2divisions,
-        battleData.nation2,
+        battle.data.nation2divisions,
+        battle.data.nation2,
         isInitiator = meInitiator
     ) else Player(
         myName,
-        battleData.nation1divisions,
-        battleData.nation1,
+        battle.data.nation1divisions,
+        battle.data.nation1,
         isInitiator = meInitiator
     )
 
     val enemy = if (invertNations) Player(
         enemyName,
-        battleData.nation1divisions,
-        battleData.nation1,
+        battle.data.nation1divisions,
+        battle.data.nation1,
         isInitiator = !meInitiator
     ) else Player(
         enemyName,
-        battleData.nation2divisions,
-        battleData.nation2,
+        battle.data.nation2divisions,
+        battle.data.nation2,
         isInitiator = !meInitiator
     )
 
@@ -41,7 +41,7 @@ data class GameData(
         return GameData(
             enemyName,
             myName,
-            battleData,
+            battle,
             boardHeight,
             boardWidth,
             invertNations = !invertNations,
