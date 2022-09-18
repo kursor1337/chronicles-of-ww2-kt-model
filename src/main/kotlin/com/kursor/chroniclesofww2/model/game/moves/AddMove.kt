@@ -16,7 +16,7 @@ class AddMove(
     companion object {
         fun decodeFromStringToSimplified(string: String): Simplified {
             val divisionType =
-                Division.Type.valueOf(string.substringAfter("-".substringBefore(":")))
+                Division.Type.valueOf(string.substringAfter("-").substringBefore(":"))
             val tileCoordinate = string.substringAfter(":").toInt()
             return Simplified(divisionType, tileCoordinate)
         }
