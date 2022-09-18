@@ -17,7 +17,7 @@ class Tile(val row: Int, val column: Int) {
             println("Tile $this: set division on tile with coordinate $coordinate")
             println("Tile $this: division = $div")
             field = div
-            if (div == null) listener!!.onTileCleared()
+            if (div == null) listener?.onTileCleared()
             else listener?.onDivisionSet(div)
         }
 
