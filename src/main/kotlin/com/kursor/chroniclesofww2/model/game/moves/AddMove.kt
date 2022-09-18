@@ -11,7 +11,7 @@ class AddMove(
 
     override val type = Type.ADD
 
-    override fun encodeToString() = "$type-${divisionReserve}:${destination.coordinate}"
+    override fun encodeToString() = "$type-${divisionReserve.type}:${destination.coordinate}"
 
     companion object {
         fun decodeFromStringToSimplified(string: String): Simplified {
