@@ -12,6 +12,27 @@ data class Battle(
     val data: Data
 ) {
 
+    constructor(
+        id: Int,
+        name: String,
+        description: String,
+        nation1: Nation,
+        nation1divisions: Map<Division.Type, Int>,
+        nation2: Nation,
+        nation2divisions: Map<Division.Type, Int>
+    ) : this(
+        id = id,
+        name = name,
+        description = description,
+        data = Data(
+            id = id,
+            nation1 = nation1,
+            nation1divisions = nation1divisions,
+            nation2 = nation2,
+            nation2divisions = nation2divisions
+        )
+    )
+
     companion object {
         const val DEFAULT = -865
         const val DEFAULT_MISSION_NAME = "Default"
