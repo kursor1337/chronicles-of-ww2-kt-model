@@ -72,6 +72,7 @@ class RuleManager(
     }
 
     fun checkAddMoveForValidity(addMove: AddMove): Boolean {
+        if (!addMove.destination.isEmpty) return false
         if (addMove.divisionReserve.playerName == model.me.name && isEnemyTurn()) return false
         else if (addMove.divisionReserve.playerName == model.enemy.name && isMyTurn()) return false
         return if (addMove.divisionReserve.playerName == model.me.name) addMove.destination.row == myRow
