@@ -89,6 +89,7 @@ abstract class Controller(
 
     open fun processReserveClick(type: Division.Type, playerName: String) {
         val reserve = model.getPlayerByName(playerName).divisionResources.reserves[type]!!
+        if (reserve.isEmpty) return
         if (reserve == clickedReserve) {
             clickedReserve = null
             listener.onAddMoveCanceled()
