@@ -18,7 +18,7 @@ abstract class Controller(
 
     protected var clickedTile: Tile? = null
         set(value) {
-            if (field == null && value != null) listener.onTileClicked(
+            if (value != null) listener.onTileClicked(
                 value,
                 ruleManager.calculatePossibleMotionMoves(
                     value.row,
@@ -30,7 +30,7 @@ abstract class Controller(
         }
     protected var clickedReserve: Reserve? = null
         set(value) {
-            if (field == null && value != null) listener.onReserveClicked(
+            if (value != null) listener.onReserveClicked(
                 value,
                 ruleManager.calculatePossibleAddMoves(value.type, value.playerName)
             )
@@ -47,6 +47,11 @@ abstract class Controller(
         }
         when {
             clickedTile != null -> {
+                if (tile.division?.playerName == clickedTile!!.division!!.playerName) {
+                    listener.onMotionMoveCanceled(clickedTile!!.row, clickedTile!!.column)
+                    clickedTile = tile
+                    return
+                }
                 val move = MotionMove(clickedTile!!, tile)
                 if (!ruleManager.checkMotionMoveForValidity(move)) return
                 sendMotionMoveToModel(move)
@@ -88,6 +93,10 @@ abstract class Controller(
             clickedReserve = null
             listener.onAddMoveCanceled()
             return
+        }
+        if (clickedTile != null) {
+            listener.onMotionMoveCanceled(clickedTile!!.row, clickedTile!!.column)
+            clickedTile = null
         }
         clickedReserve = reserve
 
